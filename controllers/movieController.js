@@ -86,3 +86,21 @@ exports.deleteMovies = async (req, res) => {
     });
   }
 };
+
+exports.keepDBActive = async (req, res) => {
+  try {
+    const movies = await Movie.find().limit(2);
+    res.status(200).json({
+      status: "success",
+      requestedAt: req.requestTime,
+      results: movies.length,
+      data: { movies },
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: "fail",
+      error: "Failed to get movies",
+      details: e.message,
+    });
+  }
+};

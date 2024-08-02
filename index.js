@@ -7,6 +7,7 @@ const {
   addMovies,
   editMovies,
   deleteMovies,
+  keepDBActive,
 } = require("./controllers/movieController");
 
 const app = express();
@@ -32,6 +33,7 @@ app.get("/movies/v1/get-movies", getMovies);
 app.post("/movies/v1/add-movie", addMovies);
 app.patch("/movies/v1/edit-movie/:movieId", editMovies);
 app.delete("/movies/v1/delete-movie/:movieId", deleteMovies);
+app.get("/movies/v1/keepDBActive", keepDBActive);
 
 const port = 9000;
 app.listen(port, () => {
